@@ -18,15 +18,16 @@ class PackageSerializer(serializers.ModelSerializer):
                 package_version = data[i]
                 found = True
 
-        if found == True:
+        if found:
             v_exist = version_exists(data["name"], package_version)
-            if v_exist == True:
+            if v_exist:
                 return data
             else:
                 raise serializers.ValidationError({"error": "One or more packages doesn't exist"})
+        
         else:
             last = latest_version(data["name"])
-            if last == "None":
+            if last == None:
                 raise serializers.ValidationError({"error": "One or more packages doesn't exist"})
             else:
                 data['version'] = last
@@ -47,9 +48,9 @@ class ProjectSerializer(serializers.ModelSerializer):
         packages = validated_data["packages"]
         projeto = Project.objects.create(name=validated_data["name"])
         
-        leng_pack = len(packages)
+        length_pack = len(packages)
         i = 0
-        while i < leng_pack:
+        while i < length_pack:
             package = PackageRelease.objects.create(name=packages[i]['name'], version=packages[i]['version'], project=projeto)
             i += 1
         
