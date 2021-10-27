@@ -19,3 +19,4 @@ vscode:
     - ms-python.python
     - eamodio.gitlens
     - ms-toolsai.jupyter
+    # o item .jupyter acima foi incluído por recomendação da instruct, não fazia parte do exercício
