@@ -22,4 +22,8 @@ def latest_version(package_name):
     
     else:
         response = response.json()
-        return list(response['releases'].keys())[-1]
+        return response['info']['version']
+        
+# O código abaixo capta a informação dos lançamentos de versões que ainda serão publicadas 
+# e não apenas a última versão em uso, por isso o correto é pegar a informação na key [info]   
+#   return list(response['releases'].keys())[-1]
